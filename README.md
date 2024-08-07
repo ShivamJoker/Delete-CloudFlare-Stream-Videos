@@ -47,21 +47,9 @@ Replace `YOUR_API_TOKEN` and `YOUR_ACCOUNT_ID` with your actual Cloudflare API t
    - Your Account ID is visible in the URL when you're logged in, or in the overview page of your account
    - For more details, see [Cloudflare's documentation on finding your Account ID](https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/find-account-and-zone-ids/)
 
-## Building for Different Platforms
-
-Use the provided Makefile to build for different platforms:
-
-- Build for all platforms: `make build-all`
-- Build for Linux: `make build-linux`
-- Build for Windows: `make build-windows`
-- Build for macOS: `make build-darwin`
-
-Binaries will be placed in the `dist/` directory.
-
 ## Warning
 
 This program will delete ALL videos in your Cloudflare Stream account. Use with caution and ensure you have backups if needed.
-
 
 ## Links
 
