@@ -8,6 +8,9 @@ GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 
+# Optimization flags
+OPTFLAGS=-ldflags="-s -w" -trimpath
+
 # Build the project
 all: build
 
@@ -29,15 +32,15 @@ test:
 build-all: build-linux build-windows build-macos
 
 build-linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o dist/$(BINARY_NAME)-linux-amd64 -v
-	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) -o dist/$(BINARY_NAME)-linux-arm64 -v
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) $(OPTFLAGS) -o dist/$(BINARY_NAME)-linux-amd64 -v
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) $(OPTFLAGS) -o dist/$(BINARY_NAME)-linux-arm64 -v
 
 build-windows:
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -o dist/$(BINARY_NAME)-windows-amd64.exe -v
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) $(OPTFLAGS) -o dist/$(BINARY_NAME)-windows-amd64.exe -v
 
 build-macos:
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -o dist/$(BINARY_NAME)-macos-intel -v
-	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GOBUILD) -o dist/$(BINARY_NAME)-macos-apple-chip -v
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) $(OPTFLAGS) -o dist/$(BINARY_NAME)-macos-intel -v
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 $(GOBUILD) $(OPTFLAGS) -o dist/$(BINARY_NAME)-macos-apple-chip -v
 
 # Build and run
 run: build
